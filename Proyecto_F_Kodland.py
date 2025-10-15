@@ -41,7 +41,7 @@ def draw():
     seal.draw()
 
     # Mostrar puntaje
-    screen.draw.text("Score: " + str(score), (10, 10), fontsize=35, color="white")
+    screen.draw.text("Puntaje: " + str(score // 2), (10, 10), fontsize=35, color="black", background = 'orange')
 
     if game_over:
         screen.draw.text("Game Over", center=(WIDTH / 2, HEIGHT / 2), fontsize=50, color="red")
@@ -109,15 +109,21 @@ def on_key_down(key):
 
 def crear_tuberia():
     """Crea un par de tuberías (superior e inferior)"""
-    espacio = 100
-    altura = random.randint(60, HEIGHT - 160)
-
+    if score < 20:
+        altura = random.randint(40, 200)
+        altura2 = random.randint(250, 410)
+    elif score > 19:
+        altura = random.randint(40, 210)
+        altura2 = random.randint(240, 410)
+    #elif score > 
     # Tubería superior
-    pipe_top = Actor('Pipe', (WIDTH, altura - espacio - 150))
+    pipe_top = Actor('Pipe', (WIDTH, 20), size = (50, altura))
     pipe_top.angle = 180
 
     # Tubería inferior
-    pipe_bottom = Actor('Pipe', (WIDTH, altura + espacio))
+    pipe_bottom = Actor('Pipe', (WIDTH, 430), size = (50, altura2))
 
     pipes.append(pipe_top)
     pipes.append(pipe_bottom)
+
+
